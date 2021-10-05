@@ -9,4 +9,4 @@
 
 ## Resources
 
-- React useWebsocket https://www.npmjs.com/package/react-use-websocket
+- React ActionCable - https://www.npmjs.com/package/actioncable

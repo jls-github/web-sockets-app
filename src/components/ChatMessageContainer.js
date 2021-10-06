@@ -1,23 +1,18 @@
 import { useState, useEffect } from "react";
+// import { useHistory } from "react-router-dom";
 import { BASE_SOCKET_URL, MESSAGES_URL } from "../constraints/urls";
 import ChatMessage from "./ChatMessage";
 import ActionCable from "actioncable";
 import ChatMessageForm from "./ChatMessageForm";
-// import useWebSocket from "react-use-websocket";
+import useFetch, { standardErrorHandler } from "../hooks/useFetch";
 
 export default function ChatMessageContainer() {
-  const [chatMessages, setChatMessages] = useState(null);
   const [messagesChannel, setMessagesChannel] = useState(null);
 
-  useEffect(() => {
-    async function fetchMessages() {
-      const res = await fetch(MESSAGES_URL);
-      const json = await res.json();
-      setChatMessages(json);
-    }
-
-    fetchMessages();
-  }, []);
+  const { data: chatMessages, setData: setChatMessages } = useFetch(
+    MESSAGES_URL,
+    standardErrorHandler
+  );
 
   function handleAddMessage(message) {
     messagesChannel.send({
@@ -47,8 +42,6 @@ export default function ChatMessageContainer() {
 
     setMessagesChannel(channel);
   }, []);
-
-  useEffect(() => {}, [chatMessages]);
 
   if (!chatMessages) return <div>loading messages...</div>;
 

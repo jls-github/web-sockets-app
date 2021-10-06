@@ -1,11 +1,12 @@
 ## Steps
 
 - [ ] Fetch old messages via http
-- [ ] Establish ws connection
 - [ ] Keep those messages in state
+- [ ] Establish ws connection
+- [ ] Create a subscription to the MessageChannel
 - [ ] Respond to new messages sent via ws
-- [ ] Add each message to state with lastJsonMessage hook
-- [ ] Send new messages with sendJsonMessage (or sendMessage)
+- [ ] Add each message to state with received hook
+- [ ] Send new messages with send
 
 ## Resources
 
